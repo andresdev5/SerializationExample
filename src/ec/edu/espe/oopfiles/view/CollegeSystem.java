@@ -16,18 +16,31 @@ public class CollegeSystem {
         Scanner scanner = new Scanner(System.in);
         int option;
         
-        do {            
+        do {
+            boolean wasInvalid = false;
+            
+            System.out.flush();                    
             System.out.print(
                     "1: views students list\n" +
                     "2: register new student\n" +
-                    "3: exit\n\n" +
-                    "please enter an option: ");
+                    "3: exit\n\n");
             
-            try {
-                option = scanner.nextInt();
-            } catch(Exception ex) {
-                System.err.print(ex.getMessage());
-                option = -1;
+            while (true) {
+                System.out.print(
+                    wasInvalid ? "Enter a valid option: " : "Enter an option: ");
+                
+                try {
+                    option = Integer.parseInt(scanner.nextLine());
+                } catch(Exception ex) {
+                    option = -1;
+                }
+                
+                if (option < 1 || option > 3) {
+                    wasInvalid = true;
+                    continue;
+                }
+                
+                break;
             }
             
             System.out.println("\n\n");
@@ -53,18 +66,16 @@ public class CollegeSystem {
                 case 3:
                     System.out.println("exiting...");
                 break;
-                default:
-                    System.out.println("\n[Opcion invalida]");
-                break;
+                default: break;
             }
             
-            if (option > 0 && option < 3) {
+            if (option != 3) {
                 System.out.print("\n\nPress <enter> key to continue...");
                 System.in.read();
                 System.out.println("\n\n\n");
             }
             
-            scanner.reset();
+            scanner.nextLine();
         } while (option != 3);
         
         scanner.close();
