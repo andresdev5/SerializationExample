@@ -19,7 +19,7 @@ public class CollegeSystem {
         do {            
             System.out.print(
                     "1: views students list\n" +
-                    "2: register new student\n\n" +
+                    "2: register new student\n" +
                     "3: exit\n\n" +
                     "please enter an option: ");
             
