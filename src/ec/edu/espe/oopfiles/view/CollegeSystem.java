@@ -36,14 +36,12 @@ public class CollegeSystem {
 
                     for (Student student : students) {
                         System.out.println(student);
+                        System.out.println();
                     }
-                    
-                    System.in.read();
                 }
                 break;
                 case 2: {
                     manager.register();
-                    System.in.read();
                 }
                 break;
                 case 3:
@@ -54,7 +52,15 @@ public class CollegeSystem {
                 break;
             }
             
+            if (option > 0 && option < 3) {
+                System.out.print("\n\nPress any key to continue...");
+                System.in.read();
+                System.out.println("\n\n\n");
+            }
+            
             scanner.reset();
         } while (option != 3);
+        
+        scanner.close();
     }
 }

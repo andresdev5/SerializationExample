@@ -56,11 +56,10 @@ public class Student {
     public void setHasScholarship(boolean hasScholarship) {
         this.hasScholarship = hasScholarship;
     }
-    
+
     @Override
     public String toString() {
-        return String.format(
-            "%d;%s;%d;%.2f;%d",
-            id, name, age, average, (hasScholarship ? 1 : 0));
+        return "Student{" + "id=" + id + ", name=" + name + ", age=" + age +
+            ", average=" + average + ", hasScholarship=" + hasScholarship + '}';
     }
 }

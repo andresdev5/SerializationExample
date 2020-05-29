@@ -130,6 +130,7 @@ public class StudentsManager {
             File database = new File(databaseName);
             
             if (!database.exists()) {
+                database.mkdirs();
                 database.createNewFile();
             }
             
