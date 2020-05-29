@@ -30,9 +30,15 @@ public class CollegeSystem {
                 option = -1;
             }
             
+            System.out.println("\n\n");
+            
             switch (option) {
                 case 1: {
                     List<Student> students = manager.getAllStudents();
+                    
+                    if (students.size() == 0) {
+                        System.out.println("No records found");
+                    }
 
                     for (Student student : students) {
                         System.out.println(student);
@@ -53,7 +59,7 @@ public class CollegeSystem {
             }
             
             if (option > 0 && option < 3) {
-                System.out.print("\n\nPress any key to continue...");
+                System.out.print("\n\nPress <enter> key to continue...");
                 System.in.read();
                 System.out.println("\n\n\n");
             }

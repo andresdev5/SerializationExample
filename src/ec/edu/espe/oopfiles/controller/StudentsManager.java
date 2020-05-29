@@ -2,13 +2,11 @@ package ec.edu.espe.oopfiles.controller;
 
 import ec.edu.espe.oopfiles.model.Student;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  *
@@ -84,8 +82,7 @@ public class StudentsManager {
             File database = new File(databaseName);
             
             if (!database.exists()) {
-                System.out.println("No records found");
-                return null;
+                return students;
             }
             
             Scanner scanner = new Scanner(database);
@@ -104,7 +101,7 @@ public class StudentsManager {
                     student.setName(tokens[1]);
                     student.setAge(Integer.parseInt(tokens[2]));
                     student.setAverage(Double.parseDouble(tokens[3]));
-                    student.setHasScholarship(Boolean.parseBoolean(tokens[4]));
+                    student.setHasScholarship(Integer.parseInt(tokens[4]) == 1);
                 } catch (Exception exception) {
                     System.err.println(
                         "An error has ocurred while attempt to read a record");
@@ -130,14 +127,13 @@ public class StudentsManager {
             File database = new File(databaseName);
             
             if (!database.exists()) {
-                database.mkdirs();
                 database.createNewFile();
             }
             
             FileWriter writer = new FileWriter(database, true);
             PrintWriter printWriter = new PrintWriter(writer);
             
-            printWriter.println(student);
+            printWriter.println(student.serialize());
             printWriter.close();
             writer.close();
         } catch (Exception exception) {

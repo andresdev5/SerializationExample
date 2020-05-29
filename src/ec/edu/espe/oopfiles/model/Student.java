@@ -1,7 +1,5 @@
 package ec.edu.espe.oopfiles.model;
 
-import java.util.Date;
-
 /**
  *
  * @author jon_m
@@ -55,6 +53,11 @@ public class Student {
 
     public void setHasScholarship(boolean hasScholarship) {
         this.hasScholarship = hasScholarship;
+    }
+    
+    public String serialize() {
+        return id + ";" + name + ";" + age + ";" + average + ";"
+               + (hasScholarship ? "1" : "0");
     }
 
     @Override
