@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,6 +49,7 @@ public class BookCatalog {
     
     public boolean saveBook(Book book) {
         File database = new File("books.txt");
+        File rawDatabase = new File("books-raw.txt");
         List<Book> books = retrieveBooks();
         books.add(book);
         
@@ -55,10 +57,19 @@ public class BookCatalog {
             if (!database.exists()) {
                 database.createNewFile();
             }
+            
+            if (!rawDatabase.exists()) {
+                rawDatabase.createNewFile();
+            }
 
             FileOutputStream fileStream = new FileOutputStream(database, false);
             ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
             objectStream.writeObject(books);
+            
+            FileOutputStream outputStream = new FileOutputStream(rawDatabase, true);
+            PrintWriter writer = new PrintWriter(outputStream);
+            writer.println(book);
+            writer.close();
         } catch (Exception exception) {
             return false;
         }
